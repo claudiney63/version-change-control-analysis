@@ -10,8 +10,3 @@ Para obter os dados dos commits de um repositório GitHub, use o seguinte comand
 perceval github --json-line --category commits -t YOUR_GITHUB_TOKEN owner repository > commits.json
 
 ```
-
-Comando usado para coletar as informações do repositorio do framework react:
-```
-perceval github --json-line --category commits -t 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 facebook react > commits.json
-```
