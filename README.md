@@ -66,14 +66,37 @@ Agora, dividimos o número total de arquivos pelo número total de commits para 
 
 ### 1.5. Tempo médio para resolver uma issue (dias)
 
+Essa parte consiste em calcular o tempo médio que leva para as issues serem fechadas no repositório que você está analisando.
+
 ```
 Tempo médio para resolver uma issue: 3.85 dias
 ```
 
+  - Explicação do Código:
+
+    - Requisição de Issues Fechadas: O script envia uma requisição para a API do GitHub, buscando as issues fechadas (state=closed) do repositório selecionado. Ele retorna até 100 issues por página.
+
+    - Data de Criação e Fechamento: Para cada issue, o código coleta as datas de criação (created_at) e fechamento (closed_at), e então converte essas datas para o formato datetime do Python.
+
+    - Cálculo da Diferença: A diferença entre as duas datas é calculada usando datetime do Python, o que resulta no número de dias que a issue levou para ser resolvida.
+
+    - Cálculo da Média: O tempo total é somado para todas as issues e, no final, o tempo médio é obtido dividindo-se o total de dias pelo número de issues analisadas.
+
 ### 1.6. Percentual de issues fechadas que estão associadas a commits
+
+É calculado o percentual de issues fechadas que estão vinculadas a um commit, ou seja, quantas issues foram fechadas diretamente devido a um commit ou foram mencionadas em mensagens de commit.
+
+Explicações:
+  - Fechamento por Pull Request: Se o campo 'pull_request' estiver presente na issue, conta como fechada por pull request.
+
+  - Fechamento por Commit Direto: Se o evento 'closed' tem o campo 'commit_id', significa que a issue foi fechada diretamente por um commit.
+
+  - Fechamento Manual: Se o evento de fechamento não tem um commit_id nem foi por um pull request, ela é contabilizada como fechamento manual (ou seja, um desenvolvedor a fechou manualmente sem associá-la a um commit específico).
 
 ```
 Percentual de issues fechadas associadas a commits: 0.00%
+Percentual de issues fechadas por pull requests: 72.00%
+Percentual de issues fechadas manualmente: 23.00%
 ```
 
 ### 1.7. Aplicar o algoritmo SZZ para identificar o commit que introduziu um bug
@@ -81,3 +104,28 @@ Percentual de issues fechadas associadas a commits: 0.00%
 ```
 
 ```
+
+### 1.8. Média comentarios por issue
+
+O script acessa a API do GitHub para recuperar todas as issues (abertas e fechadas) e contabiliza o número total de comentários em todas as issues que não são pull requests.
+No final, ele calcula a média de comentários por issue.
+
+```
+Média de comentários por issue: 1.73
+```
+
+Média de comentários por issue: É a soma dos comentários de todas as issues dividido pelo número total de issues.
+
+### 1.9. Percentual de commits com comentários in-line
+
+Os comentários in-line são aqueles feitos diretamente em linhas de código em pull requests, associados a commits. Para calcular o percentual de commits que possuem comentários in-line, você precisará acessar os pull requests e verificar se há comentários em arquivos modificados.
+
+````
+Percentual de commits com comentários in-line: 2.86%
+```
+
+O script recupera todos os pull requests fechados e verifica os commits em cada PR.
+Para cada commit, ele verifica se há comentários in-line no código, acessando o link review_comments.
+No final, ele calcula o percentual de commits com comentários in-line.
+
+Percentual de commits com comentários in-line: É o número de commits em pull requests que têm comentários in-line dividido pelo número total de commits, multiplicado por 100.
