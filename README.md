@@ -7,11 +7,16 @@ Análise de controle de versão e mudança de software, incluindo extração de 
 Para obter os dados dos commits de um repositório GitHub, use o seguinte comando:
 
 ```
-perceval github --json-line --category commits -t YOUR_GITHUB_TOKEN owner repository > commits.json
+git clone https://github.com/user/repo-name.git
+cd repo-name
 
 ```
 
+Será analisado o repositorio do framework Bootstrap.
+
 ### 1.2. Top-5 desenvolvedores (#commits)
+
+Abaixo é listado os 5 desenvolvedores que mais fizeram commits:
 
 ```
   9849  Mark Otto
@@ -22,6 +27,8 @@ perceval github --json-line --category commits -t YOUR_GITHUB_TOKEN owner reposi
 ```
 
 ### Top-5 arquivos mais modificados 
+
+Abaixo é listado os 5 arquivos do framework que foram modificados mais vezes:
 
 ````
 Count Name                      Group
