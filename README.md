@@ -120,7 +120,7 @@ Média de comentários por issue: É a soma dos comentários de todas as issues 
 
 Os comentários in-line são aqueles feitos diretamente em linhas de código em pull requests, associados a commits. Para calcular o percentual de commits que possuem comentários in-line, você precisará acessar os pull requests e verificar se há comentários em arquivos modificados.
 
-````
+```
 Percentual de commits com comentários in-line: 2.86%
 ```
 
