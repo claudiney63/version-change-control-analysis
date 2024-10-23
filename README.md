@@ -26,11 +26,11 @@ Abaixo é listado os 5 desenvolvedores que mais fizeram commits:
    765  dependabot[bot]
 ```
 
-### Top-5 arquivos mais modificados 
+### 1.3. Top-5 arquivos mais modificados 
 
 Abaixo é listado os 5 arquivos do framework que foram modificados mais vezes:
 
-````
+```
 Count Name                      Group
 ----- ----                      -----
     4 docs/assets/js/vendor/... {docs/assets/js/vendor/Blob.js, docs/assets/js/vendor/blob.js, docs/assets/js/vendor/Blob.js, docs/assets/js/vendor/blob.js}      
@@ -38,4 +38,46 @@ Count Name                      Group
     1 site/content/docs/5.2/... {site/content/docs/5.2/components/alerts.md}
     1 site/content/docs/5.2/... {site/content/docs/5.2/components/accordion.md}
     1 site/content/docs/5.2/... {site/content/docs/5.2/about/team.md}
+```
+
+### 1.4. Número médio de arquivos por commit
+
+Para contar o número total de arquivos modificados:
+
+```
+git log --pretty=format: --name-only | Where-Object { $_ -ne "" } | Measure-Object
+
+Count    : 65134
+```
+
+Para contar o número total de commits:
+
+```
+git rev-list --count HEAD
+
+22909
+```
+
+Agora, dividimos o número total de arquivos pelo número total de commits para obter a média.
+
+```
+65134 / 22909 = 2.85
+```
+
+### 1.5. Tempo médio para resolver uma issue (dias)
+
+```
+Tempo médio para resolver uma issue: 3.85 dias
+```
+
+### 1.6. Percentual de issues fechadas que estão associadas a commits
+
+```
+Percentual de issues fechadas associadas a commits: 0.00%
+```
+
+### 1.7. Aplicar o algoritmo SZZ para identificar o commit que introduziu um bug
+
+```
+
 ```
