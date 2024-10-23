@@ -1,4 +1,4 @@
-# version-change-control-analysis
+# Version Change Control Analysis
 Análise de controle de versão e mudança de software, incluindo extração de dados de commits e issues, identificação dos principais desenvolvedores, arquivos mais modificados, tempo médio de resolução de issues, percentual de issues ligadas a commits e aplicação do algoritmo SZZ para bugs.
 
 ## 1. Usando Git para Coletar Dados de Commits (Controle de Versão)
@@ -9,7 +9,6 @@ Para obter os dados dos commits de um repositório GitHub, use o seguinte comand
 ```
 git clone https://github.com/user/repo-name.git
 cd repo-name
-
 ```
 
 Será analisado o repositorio do framework Bootstrap.
@@ -19,6 +18,8 @@ Será analisado o repositorio do framework Bootstrap.
 Abaixo é listado os 5 desenvolvedores que mais fizeram commits:
 
 ```
+git shortlog -sn --all | Select-Object -First 5
+
   9849  Mark Otto
   3052  Chris Rebert
   2768  XhmikosR
@@ -31,6 +32,8 @@ Abaixo é listado os 5 desenvolvedores que mais fizeram commits:
 Abaixo é listado os 5 arquivos do framework que foram modificados mais vezes:
 
 ```
+git log --name-only --pretty=format: | Sort-Object | Get-Unique | Group-Object | Sort-Object Count -Descending | Select-Object -First 5
+
 Count Name                      Group
 ----- ----                      -----
     4 docs/assets/js/vendor/... {docs/assets/js/vendor/Blob.js, docs/assets/js/vendor/blob.js, docs/assets/js/vendor/Blob.js, docs/assets/js/vendor/blob.js}      
@@ -101,9 +104,21 @@ Percentual de issues fechadas manualmente: 23.00%
 
 ### 1.7. Aplicar o algoritmo SZZ para identificar o commit que introduziu um bug
 
-```
+O bug encontrado refere-se a uma correção de um erro tipográfico no código da documentação do Bootstrap. Especificamente, a variável Sass $enable-css-grid foi corrigida para $enable-cssgrid. Isso ocorreu na seção "Customize > Options" da documentação.
 
-```
+  - Commits efetuados:
+
+![image](https://github.com/user-attachments/assets/56de9bc0-67bd-4441-ac51-2979b744f238)
+
+  - Arquivo modificado:
+
+![image](https://github.com/user-attachments/assets/cef84df4-d70a-45d5-8e70-bb691ad5f738)
+
+  - Commit que foi inserido o bug:
+    
+![image](https://github.com/user-attachments/assets/2664186b-50eb-4f59-b227-30181cb49e5f)
+
+O erro parece ser uma simples inconsistência no nome da variável que estava sendo referenciada. A correção foi feita para garantir que o nome da variável Sass estivesse correto, de forma a evitar possíveis problemas durante a compilação ou o uso do CSS Grid ao configurar o Bootstrap.
 
 ### 1.8. Média comentarios por issue
 
@@ -120,7 +135,7 @@ Média de comentários por issue: É a soma dos comentários de todas as issues 
 
 Os comentários in-line são aqueles feitos diretamente em linhas de código em pull requests, associados a commits. Para calcular o percentual de commits que possuem comentários in-line, você precisará acessar os pull requests e verificar se há comentários em arquivos modificados.
 
-````
+```
 Percentual de commits com comentários in-line: 2.86%
 ```
 
